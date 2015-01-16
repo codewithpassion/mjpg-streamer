@@ -292,7 +292,7 @@ static int init_v4l2(struct vdIn *vd)
     /*
      * map the buffers
      */
-    for(i = 0; i < NB_BUFFER; i++) {
+    for(i = 0; i < vd->rb.count; i++) {
         memset(&vd->buf, 0, sizeof(struct v4l2_buffer));
         vd->buf.index = i;
         vd->buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
@@ -320,7 +320,7 @@ static int init_v4l2(struct vdIn *vd)
     /*
      * Queue the buffers.
      */
-    for(i = 0; i < NB_BUFFER; ++i) {
+    for(i = 0; i < vd->rb.count; ++i) {
         memset(&vd->buf, 0, sizeof(struct v4l2_buffer));
         vd->buf.index = i;
         vd->buf.type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
@@ -754,7 +754,7 @@ int setResolution(struct vdIn *vd, int width, int height)
     if(video_disable(vd, STREAMING_PAUSED) == 0) {  // do streamoff
         DBG("Unmap buffers\n");
         int i;
-        for(i = 0; i < NB_BUFFER; i++)
+        for(i = 0; i < vd->rb.count; i++)
             munmap(vd->mem[i], vd->buf.length);
 
         if(CLOSE_VIDEO(vd->fd) == 0) {

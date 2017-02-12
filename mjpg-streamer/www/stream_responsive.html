@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Stream</title>
+    <meta name="viewport" content="width=device-width">
+    <style>
+      html, body {
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        margin: 0;
+        background: #222;
+        box-sizing: border-box;
+        position: relative;
+      }
+      body > div {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+      }
+      body > div > img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: auto;
+        max-height: 720px;
+        -ms-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+        transform: translateX(-50%) translateY(-50%);
+      }
+      @media only screen and (orientation: portrait) {
+        body > div > img {
+          width: 100%;
+        }
+      }
+      @media only screen and (orientation: landscape) {
+        body > div > img {
+         height: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <img src="./?action=stream" />
+    </div>
+  </body>
+</html>

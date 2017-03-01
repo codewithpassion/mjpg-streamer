@@ -45,6 +45,7 @@ PLUGINS += input_file.so
 # PLUGINS += input_control.so # commented out because the output_http does it's job
 # PLUGINS += input_http.so 
 # PLUGINS += output_viewer.so # commented out because it depends on SDL
+PLUGINS += output_zmq.so
 
 # define the names of object files
 OBJECTS=mjpg_streamer.o utils.o
@@ -132,6 +133,11 @@ output_viewer.so: mjpg_streamer.h utils.h
 	make -C plugins/output_viewer all
 	cp plugins/output_viewer/output_viewer.so .
 
+output_zmq.so: mjpg_streamer.h utils.h
+	make -C plugins/output_zmq all
+	cp plugins/output_zmq/output_zmq.so .
+
+
 # cleanup
 clean:
 	make -C plugins/input_uvc $@
@@ -144,6 +150,7 @@ clean:
 	make -C plugins/output_viewer $@
 	make -C plugins/input_control $@
 	make -C plugins/output_rtsp $@
+	make -C plugins/output_zmq $@
 #	make -C plugins/input_http $@
 	rm -f *.a *.o $(APP_BINARY) core *~ *.so *.lo
 

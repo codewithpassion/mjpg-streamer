@@ -532,4 +532,3 @@ int input_cmd(int plugin_number, unsigned int control_id, unsigned int group, in
     }
     return ret;
 }
-

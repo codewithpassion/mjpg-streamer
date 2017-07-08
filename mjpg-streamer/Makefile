@@ -36,6 +36,7 @@ PLUGINS = input_uvc.so
 PLUGINS += output_file.so
 PLUGINS += output_udp.so
 PLUGINS += output_http.so
+PLUGINS += output_https.so
 PLUGINS += input_testpicture.so
 #PLUGINS += output_autofocus.so
 #PLUGINS += input_gspcav1.so
@@ -99,6 +100,10 @@ output_http.so: mjpg_streamer.h utils.h
 	cp plugins/output_http/output_http.so .
 endif
 
+output_https.so: mjpg_streamer.h utils.h
+	make -C plugins/output_https all
+	cp plugins/output_https/output_https.so .
+	
 output_udp.so: mjpg_streamer.h utils.h
 	make -C plugins/output_udp all
 	cp plugins/output_udp/output_udp.so .
@@ -138,6 +143,7 @@ clean:
 	make -C plugins/input_testpicture $@
 	make -C plugins/output_file $@
 	make -C plugins/output_http $@
+	make -C plugins/output_https $@
 	make -C plugins/output_udp $@
 	make -C plugins/output_autofocus $@
 	make -C plugins/input_gspcav1 $@
